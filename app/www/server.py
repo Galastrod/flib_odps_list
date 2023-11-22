@@ -112,5 +112,10 @@ def home( request: Request ) :
 def new() :
 	res = getNewBoks()
 	return res
+
+@app.get( '/search' )
+def search( req ) :
+	res = search( req )
+	return res
 # fast init end
 ################################################################
