@@ -11,7 +11,7 @@
 	[
 		{
 			"src":"/(.*)",
-			"dest":"./main.py"
+			"dest":"app/www/server.py"
 		}
 	]
 }
