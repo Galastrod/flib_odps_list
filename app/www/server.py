@@ -76,7 +76,7 @@ def getColection( url ) :
 	return json.dumps( books )
 	
 def getNewBoks() :
-	response 	= http( f'{__flibusta_url}/opds/new/0/new' )
+	response 	= http.get( f'{__flibusta_url}/opds/new/0/new' )
 	books 		= collectionParse( response.text )
 	if response.status_code == 200 :
 		return json.dumps( books )
