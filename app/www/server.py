@@ -33,7 +33,7 @@ def linksProcess( links ) :
 			
 		if link.attrib['type'] == 'application/x-mobipocket-ebook' :
 			res['download_mobi'] = link.attrib['href']
-		
+			
 	return res
 
 def collectionParse( xml_text ) :
