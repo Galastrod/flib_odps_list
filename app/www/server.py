@@ -37,7 +37,7 @@ def linksProcess( links ) :
 		
 	return res
 
-def collectionParse( xml_text ) :
+def collectionParse( xml_text, news_books ) :
 	__atom 	= '{http://www.w3.org/2005/Atom}'
 	__os	= '{http://a9.com/-/spec/opensearch/1.1/}'
 	
@@ -45,9 +45,10 @@ def collectionParse( xml_text ) :
 	books   = []
 	root    = Xml.fromstring( xml_text )
 
-	res['start_index']		= root.find( __os + 'startIndex' ).text
-	res['total_result'] 	= root.find( __os + 'totalResults' ).text
-	res['items_per_page'] 	= root.find( __os + 'itemsPerPage' ).text
+	if !news_books
+		res['start_index']		= root.find( __os + 'startIndex' ).text
+		res['total_result'] 	= root.find( __os + 'totalResults' ).text
+		res['items_per_page'] 	= root.find( __os + 'itemsPerPage' ).text
 	
 	for entry in root.iter( __atom + 'entry' ) : 
 		book = {}
@@ -77,7 +78,7 @@ def search( req ) :
 def getColection( url ) :
 	response 	= http( f'{__flibusta_url}{url}' ) 
 	if response.status_code == 200 :
-		books 	= collectionParse( response.text )
+		books 	= collectionParse( response.text, True )
 		return json.dumps( books )
 	else :
 		return "{'error': 'No conected to Flibusta OPDS'}"
