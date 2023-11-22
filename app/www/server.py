@@ -5,6 +5,7 @@ from fastapi import Request
 from starlette.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
 
+import json
 import requests as http
 import xml.etree.ElementTree as Xml
 
@@ -67,18 +68,24 @@ def collectionParse( xml_text ) :
 # module Get source from flibusta
 def search( req ) :
 	response 	= http.get( f'{__flibusta_url}/opds/opensearch?searchTerm={req}' )
-	books		= collectionParse( response.text )
-	return json.dumps( books )
+	if response.status_code == 200 :
+		books 	= collectionParse( response.text )
+		return json.dumps( books )
+	else :
+		return "{'error': 'No conected to Flibusta OPDS'}"
 
 def getColection( url ) :
 	response 	= http( f'{__flibusta_url}{url}' ) 
-	books 		= collectionParse( response.text )
-	return json.dumps( books )
+	if response.status_code == 200 :
+		books 	= collectionParse( response.text )
+		return json.dumps( books )
+	else :
+		return "{'error': 'No conected to Flibusta OPDS'}"
 	
 def getNewBoks() :
 	response 	= http.get( f'{__flibusta_url}/opds/new/0/new' )
-	books 		= collectionParse( response.text )
 	if response.status_code == 200 :
+		books 	= collectionParse( response.text )
 		return json.dumps( books )
 	else :
 		return "{'error': 'No conected to Flibusta OPDS'}"
