@@ -68,17 +68,18 @@ def collectionParse( xml_text ) :
 def search( req ) :
 	response 	= http.get( f'{__flibusta_url}/opds/opensearch?searchTerm={req}' )
 	books		= collectionParse( response.text )
-	return books
+	return json.dumps( books )
 
 def getColection( url ) :
 	response 	= http( f'{__flibusta_url}{url}' ) 
 	books 		= collectionParse( response.text )
-	drawColection( books )
+	return json.dumps( books )
 	
 def getNewBoks() :
 	response 	= http( f'{__flibusta_url}/opds/new/0/new' )
 	books 		= collectionParse( response.text )
-	return books
+	print( response.status_code )
+	return json.dumps( books )
 # module Get source from flibusta end
 ################################################################
 
@@ -101,6 +102,6 @@ def home( request: Request ) :
 @app.get( '/new' )
 def new() :
 	res = getNewBoks()
-	return res.json()
+	return res
 # fast init end
 ################################################################
