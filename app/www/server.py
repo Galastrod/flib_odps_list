@@ -51,7 +51,7 @@ def collectionParse( xml_text ) :
 	
 	for entry in root.iter( __atom + 'entry' ) : 
 		book = {}
-		
+	
 		book['links'] 		= linksProcess( entry.findall( __atom + 'link' ) )
 		book['title'] 		= entry.find( __atom + 'title' ).text
 		book['author'] 		= entry.find( __atom + 'author//' ).text
