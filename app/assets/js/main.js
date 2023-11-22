@@ -5,7 +5,7 @@ const app = new Vue({
 	
 	data: 
 	{
-		book_list_title: undefinend,
+		book_list_title: undefined,
 		books_list: undefined,
 		search_string: undefined
 	},
