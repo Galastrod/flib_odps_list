@@ -5,6 +5,7 @@ const app = new Vue({
 	
 	data: 
 	{
+		book_list_title: undefinen,
 		books_list: undefined,
 		search_string: undefined
 	},
@@ -18,6 +19,13 @@ const app = new Vue({
 					<input class="search__inp" placeholder="Введите название книги.." v-model="search_string">
 					<button class="search__btn" @click="search">Искать</button>
 				</div>
+				
+				<div class="b-books-list">
+					<h2>{{book_list_title}}</h2>
+					<div v-for="book in books_list">
+						<h3>{{ book.title }}</h3>
+					</div>
+				</div
 			</div>
 		</div>
 	`,
@@ -32,8 +40,12 @@ const app = new Vue({
 	
 	created()
 	{
-		/* fetch('./new')
+		fetch('./new')
 			.then( res => res.json() )
-			.then( res => this.books_list = res ); */
+			.then( res => 
+			{
+				this.book_list_title = "Новые книжули..."
+				this.books_list = res.books
+			} );
 	}
 });

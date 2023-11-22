@@ -1,6 +1,11 @@
 ################################################################
 # module Constants
-import requests
+from fastapi import FastAPI
+from fastapi import Request
+from starlette.staticfiles import StaticFiles
+from starlette.templating import Jinja2Templates
+
+import requests as http
 import xml.etree.ElementTree as Xml
 
 __flibusta_url 	= 'http://flibusta.site'
@@ -61,19 +66,40 @@ def collectionParse( xml_text ) :
 ################################################################
 # module Get source from flibusta
 def search( req ) :
-	response 	= requests.get( f'{__flibusta_url}/opds/opensearch?searchTerm={req}' )
+	response 	= http.get( f'{__flibusta_url}/opds/opensearch?searchTerm={req}' )
 	books		= collectionParse( response.text )
 	return books
 
 def getColection( url ) :
-	response 	= requests( f'{__flibusta_url}{url}' ) 
+	response 	= http( f'{__flibusta_url}{url}' ) 
 	books 		= collectionParse( response.text )
 	drawColection( books )
 	
 def getNewBoks() :
-	response 	= request( f'{__flibusta_url}/opds/new/0/new' )
+	response 	= http( f'{__flibusta_url}/opds/new/0/new' )
 	books 		= collectionParse( response.text )
 	return books
 # module Get source from flibusta end
 ################################################################
+
+################################################################
+# fast init
+app = FastAPI()
+app.mount( '/assets/',  StaticFiles( directory="./app/assets" ), name="assets")
+templates = Jinja2Templates( directory="./app/templates" )
+
+@app.get( '/' )
+def home( request: Request ) :
+	return templates.TemplateResponse( 
+		'index.html',
+		{
+			'request': request,
+			'app_name': "Flibusta OPDS API"
+		}
+	)
 	
+@app.get( '/new' )
+def home() :
+	return getNewBoks()
+# fast init end
+################################################################
