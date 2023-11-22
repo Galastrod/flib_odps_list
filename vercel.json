@@ -1,10 +1,12 @@
 {
 	"version":"0.0.1",
 	"builds": 
-	{
-		"src":"/app/www/server.py",
-		"use":"@vercel/python"
-	},
+	[
+		{
+			"src":"/app/www/server.py",
+			"use":"@vercel/python"
+		}
+	],
 	"routes":
 	[
 		{
