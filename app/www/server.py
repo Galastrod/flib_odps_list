@@ -100,6 +100,7 @@ def home( request: Request ) :
 	
 @app.get( '/new' )
 def new() :
-	return getNewBoks()
+	res = getNewBoks()
+	return res.json()
 # fast init end
 ################################################################
