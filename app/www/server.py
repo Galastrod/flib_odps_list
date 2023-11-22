@@ -99,7 +99,7 @@ def home( request: Request ) :
 	)
 	
 @app.get( '/new' )
-def home() :
+def new() :
 	return getNewBoks()
 # fast init end
 ################################################################
