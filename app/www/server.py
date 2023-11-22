@@ -45,7 +45,7 @@ def collectionParse( xml_text ) :
 	books   = []
 	root    = Xml.fromstring( xml_text )
 
-	if root.find( __os + 'startIndex' )
+	if root.find( __os + 'startIndex' ) != -1
 		res['start_index']	= root.find( __os + 'startIndex' ).text
 		res['total_result'] 	= root.find( __os + 'totalResults' ).text
 		res['items_per_page'] 	= root.find( __os + 'itemsPerPage' ).text
