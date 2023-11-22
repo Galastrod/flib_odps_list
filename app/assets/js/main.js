@@ -44,6 +44,11 @@ const app = new Vue({
 			.then( res => res.json() )
 			.then( res => 
 			{
+				if( res.error )
+				{
+					console.error( res );
+					return false
+				};
 				this.book_list_title = "Новые книжули..."
 				this.books_list = res.books
 			} );
