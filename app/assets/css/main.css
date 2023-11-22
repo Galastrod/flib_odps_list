@@ -80,3 +80,8 @@ color: var( --text );
 		.search__btn:hover {
 		background: var( --active-dbl );
 		}
+
+.books_list {
+display: flex;
+flex-direction: column;
+}
