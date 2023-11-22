@@ -7,11 +7,11 @@ from starlette.templating import Jinja2Templates
 import requests
 import xml.etree.ElementTree as Xml
 
-from www.server import __flibusta_url, collectionParse, search, getColection, getNewBoks
+from app.www.server import __flibusta_url, collectionParse, search, getColection, getNewBoks
 
 app = FastAPI()
-app.mount( '/assets/',  StaticFiles( directory="assets" ), name="assets")
-templates = Jinja2Templates( directory="templates" )
+app.mount( '/assets/',  StaticFiles( directory="app/assets" ), name="assets")
+templates = Jinja2Templates( directory="app/templates" )
 
 @app.get( '/' )
 def home( request: Request ) :
