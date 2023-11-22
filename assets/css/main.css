@@ -1,295 +1,82 @@
-/*
- * app
- *===========================================*/
-	.app-main {
-	display: flex;
-	flex: 1;
-	max-height: calc( 100vh - 3rem );
-	}
+* {
+padding: 0;
+margin: 0;
+outline: 0;
+border: 0;
+border-radius: 0;
+box-sizing: border-box;
+font-size: 16px;
+transition: .5s;
+font-family: Roboto, Sherif, Ubuntu;
+}
 
-/*
- * tabs bar
- *===========================================*/
-		.tab-bar {
-		border-right: .1rem solid var( --content-color );
-		width: 10rem;
-		transform: translate( -100% );
-		transition: .5s;
-		position: fixed;
-		height: 100%;
-		background: var( --content-bg );
-		z-index: 1;
-		}
-		
-			.tab-btn {
-			padding: var( --system-padding );
-			background: var( --content-bg );
-			color: var( --content-color );
-			text-align: left;
-			display: block;
-			width: 100%;
-			}
+:root {
+--light: #eee;
+--darck: #333;
+--text: #777;
+--active: #f36b6b;
+--active-dbl: #bd2929;
+}
 
-			.tab-btn:hover {
-			background: var( --translucent-color );
-			color: var( --header-color )
-			}
+h1 {
+font-size: 3rem;
+}
 
-			.tab-btn--active 
-			{
-			background: var( --header-bg );
-			color: var( --header-color )
-			}
+h2 {
+font-size: 1.5rem;	
+}
 
-		.tab-bar--active {
-		transform: translate( 0 );
-		}
-
-/*
- * main tabs
- *===========================================*/
-		.tabs {
-		width: 100%;
-		}
-		
-			.tab {
-			display: none;
-			max-width: var(--container-width);
-			margin: 0 auto;
-			position: relative;
-			overflow: auto;
-			scrollbar-width: none;
-			scroll-behavior: smooth;
-			max-height: calc( 100vh - 51px );
-			height: calc( 100vh - 51px );
-			color: var( --content-color );
-			}
-			
-			.tab-with--panel {
-			padding-bottom: 3rem ;
-			}
-
-			.tab--active {
-			display: block;
-			}
-			
-			.tab--fixsed-width {
-			width: 50rem;
-			margin: 0 auto; 	
-			}
-
-			.right-menu {
-			position: fixed;
-			top: 50%;
-			right: 0;
-			background: var(--content-bg );
-			}
-
-				.right-menu__inp-el {
-				position: absolute;
-				top: 0;
-				right: 0;
-				padding: var( --system-padding );
-				background: var( --content-bg );
-				box-shadow: 0 0 0.5rem var( --content-color );
-				transform: translateX( 100% );
-				}
-
-				.right-menu__inp-el--active {
-				transform: translateX( -3.5rem );	
-				}
-			
-			.tab-panel {
-			position: fixed;
-			bottom: 0;
-			left: 0;
-			width: 100%;
-			background: var( --content-bg );
-			color: var( --content-color );
-			border-top: .1rem solid var( --content-color );
-			display: flex;
-			align-items: center;
-			padding: 0 var( --book-padding ); 
-			}
-			
-				.chapters {
-				position: relative; }
-				
-				.chapters__toggle {
-				padding: var( --system-padding );
-				background: var( --content-bg );
-				color: var( --content-color ); 
-				}
-				
-				.chapters__list {
-				position: absolute;
-				bottom: calc( 100% + 0.1rem );
-				left: -1rem;
-				height: calc( 100vh - 6.4rem );
-				width: 20rem;
-				overflow: auto;
-				scrollbar-width: none;
-				border-right: .1rem solid var(--content-color );
-				transform: translate( -100% );
-				opacity: 0;
-				transition: .5s;
-				}
-
-				.chapters__list--active {
-				transform: translate( 0 );
-				opacity: 1;
-				}
-				
-					.chapters__list li {
-					color: var( --content-color );
-					background: var( --content-bg );
-					padding: var( --system-padding ); 
-					}
-					
-				.book-status-bar__title {
-				margin: 0 0 0 auto;
-				padding: var( --system-padding ); 
-				}
-				
-				.panel__inp-el {
-				position: relative; 
-				}
-				
-				.panel__inp-el__btn {
-				padding: var( --system-padding );
-				background: var( --content-bg );
-				color: var( --content-color );
-				}
-				
-				.inp-el__inp {
-				position: absolute;
-				bottom: calc( 100% + .5rem );
-				left: 0;
-				background: var( --content-bg );
-				color: var( --content-color );
-				padding: var( --system-padding ); 
-				transform: translateY( 300% );	
-				}
-				
-				.inp-el__inp--active {
-				transform: translateY( 0 );
-				}
-
-				.locale-books__splitter {
-				color: var( --content-color );
-				padding: 1rem 0.5rem;
-				border-bottom: 0.1rem solid var( --content-color );
-				margin: 3rem 0 0;
-				}
-
-				.books-list {
-				display: flex;
-				flex-wrap: wrap;
-				}
-
-					.book-item {
-					width: calc( 25% - 1rem );
-					margin: .5rem;
-					transition: .5s;
-					}
-
-					.book-item:hover {
-					box-shadow: 0 0 .3rem var( --content-color );
-					}
-
-						.book-item img {
-						width: 100%;
-						height: 30rem;
-						object-fit: cover;
-						}
-
-						.book-item__info {
-						padding: var( --system-padding );
-						background: var( --content-bg );
-						color: var( --content-color );
-						text-align: center;
-						}
-/*
- * book tipografy
- *===========================================*/
-.curent-book-tab {
-flex: 1;
-overflow: auto;
-padding: 0 var( --book-padding ); 
-color: var( --content-color );
+.container {
+max-width: 1200px;
 margin: 0 auto;
 }
 
-.curent-book-tab::-webkit-scrollbar {
-width: 0; }
-
-	.book-annotation {
-	display: flex;
+@media screen and (max-width: 1200px)  {
+	.container {
+	padding: 0 .5rem;
 	}
+}
 
-		.book-annotation__font {
+.main-header-wrap {
+background: url(../img/bg.jpg);
+background-size: cover;
+background-repeat: no-repyat;
+background-attachment: fixed;
+background-position: center center;
+padding: 10rem 0;
+}
+
+.app
+{
+color: var( --text );
+}
+
+	.header-title
+	{
+	color: var(--light);
+	text-shadow:  .6rem .7rem 1rem var(--text);
+	}
+	
+	.b-search {
+	padding: 3rem 0;
+	}
+	
+		.b-search-inp {
 		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		padding: var(--system-padding);
+		padding: 1rem 0;
 		}
-    .curent-book-tab section {
-    padding: 3rem 0; }
-    
-    .curent-book-tab * {
-    font-family: var( --font-family );
-    font-size: var(--book-font-size); }
-    
-        .section-header,
-        .book h2,
-        .book h1 {
-        padding: 1rem;
-        text-align: center;
-        margin: 1rem 0;
-        border-bottom: .1rem solid var( --content-color );
-        font-size: 120%; }
-    
-	.curent-book-tab v,
-    .curent-book-tab p,
-    .curent-book-tab .paragraph {
-    padding: .3rem 0;
-    display: block;
-    text-align: var( --text-align );
-    line-height: var( --line-height );
-    text-indent: var( --text-indent ); }
-    
-    .curent-book-tab epigraph:before {
-    content: '\f10e';
-    display: block;
-    padding: 1rem 0;
-    font:normal normal normal 14px/1 FontAwesome;
-    font-size: 2rem; }
-    
-    .curent-book-tab .fa:before {
-    font:normal normal normal 14px/1 FontAwesome; }
-    
-    .curent-book-tab img {
-    display: block;
-    max-width: 100%;
-    margin: 0 auto; }
-
-	.progress-bar {
-	position: fixed;
-	background: var( --content-color );
-	top: 3.1rem;
-	right: 0;
-	width: 0.5rem;
-	height: calc( 100% - 6.2rem );
-	transition: .5s;
-	}
-
-		.progress {
-		background: var( --header-bg );
-		width: .5rem;
-		transition: .5s;
+	
+		.search__inp {
+		padding: .5rem 1rem;
+		width: 100%;
 		}
-
-	.progress-bar:hover,
-	.progress-bar:hover .progress {
-	width: 1rem;
-	}
+		
+		.search__btn {
+		background: var( --active );
+		color: var( --light );
+		padding: .5rem 1rem;
+		}
+		
+		.search__btn:hover {
+		background: var( --active-dbl );
+		}
