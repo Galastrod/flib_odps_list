@@ -19,7 +19,6 @@ __flibusta_url 	= 'http://flibusta.site'
 def linksProcess( links ) :
 	res = {}
 	for link in links :
-		
 		if '/opds/author/' in link.attrib['href'] :
 			res['author_link'] = link.attrib['href']
 			
@@ -45,7 +44,7 @@ def collectionParse( xml_text ) :
 	books   = []
 	root    = Xml.fromstring( xml_text )
 
-	if root.find( __os + 'startIndex' ) != -1
+	if root.find( __os + 'startIndex' ) != -1 :
 		res['start_index']	= root.find( __os + 'startIndex' ).text
 		res['total_result'] 	= root.find( __os + 'totalResults' ).text
 		res['items_per_page'] 	= root.find( __os + 'itemsPerPage' ).text
