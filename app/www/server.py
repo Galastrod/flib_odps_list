@@ -78,8 +78,10 @@ def getColection( url ) :
 def getNewBoks() :
 	response 	= http( f'{__flibusta_url}/opds/new/0/new' )
 	books 		= collectionParse( response.text )
-	print( response.status_code )
-	return json.dumps( books )
+	if response.status_code == 200
+		return json.dumps( books )
+	else
+		return "{'error': 'No conected to Flibusta OPDS'}"
 # module Get source from flibusta end
 ################################################################
 
